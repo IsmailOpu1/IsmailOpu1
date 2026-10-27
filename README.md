@@ -2,6 +2,7 @@
 
 Full-stack developer and Computer Science student at **BRAC University** in Dhaka, Bangladesh (graduating 2027).
 I build SaaS products, dashboards and 3D browser games, from the database schema to the deployed UI.
+I also teach physics as an instructor at **Hulkenstein**, recording classes for the private university admission batch.
 
 🌐 **Portfolio:** [ismailopu.is-a.dev](https://ismailopu.is-a.dev)
 💼 Open to freelance work, internships and full-time roles (remote friendly)
