@@ -15,7 +15,6 @@ I build SaaS products, dashboards and 3D browser games, from the database schema
 | 👻 **[Haunted Lobby](https://github.com/IsmailOpu1/haunted-lobby)** · [play](https://haunted-lobby.vercel.app) | 3D co-op horror and social deduction game for 4–8 friends. The ghost hears your real microphone, so you have to whisper to survive. | TypeScript, Three.js, Colyseus, LiveKit, Rapier |
 | 📊 **[Lumina Insights](https://github.com/IsmailOpu1/Lumina-Insights)** · [demo](https://lumina-insights-ashen.vercel.app) | Multi-tenant SaaS for small businesses in Bangladesh: analytics, orders, inventory, marketing content and an AI business advisor. | React, TypeScript, Supabase, PostgreSQL, Gemini |
 | 🛍️ **ShopMind AI** (private) | AI shopping assistant that online stores embed on their site. Owners upload a product catalog and customize the chat widget. | React, TypeScript, Supabase, TanStack Query |
-| 🦇 **[Gotham Protocol](https://github.com/IsmailOpu1/I-am-Batman)** · [demo](https://i-am-batman-eta.vercel.app) | Daily tracker for workouts, skincare, haircare and nutrition with meal macro logging. | HTML, CSS, JavaScript |
 
 ---
 
