@@ -23,7 +23,7 @@ I build AI-powered SaaS products and multiplayer 3D browser games, from the data
 
 - 🎮 Building **Haunted Lobby**, a multiplayer 3D horror game that runs in the browser
 - 🤖 Shipping AI products for online businesses in Bangladesh: **ShopMind AI** and **Lumina Insights**
-- 🧪 Teaching physics at **Hulkenstein**, recording 36+ classes a season for the private university admission batch
+- 🧪 Teaching physics at **Hulkenstein**, recording classes a season for the private university admission batch
 - 🎓 Studying Computer Science at **BRAC University** (graduating 2027)
 - 💼 Open to freelance work, internships and full-time roles (remote friendly)
 
