@@ -64,7 +64,7 @@ Multi-tenant SaaS for small businesses in Bangladesh: orders, stock, real profit
 
 `React` `TypeScript` `Supabase` `PostgreSQL` `Gemini`
 
-[▶ Live demo](https://lumina-insights-ashen.vercel.app) · code is private
+[▶ Live demo](https://lumina-insights-ashen.vercel.app) · [Code](https://github.com/IsmailOpu1/Lumina-Insights)
 
 </td>
 </tr>
