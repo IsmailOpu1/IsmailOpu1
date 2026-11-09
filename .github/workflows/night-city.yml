@@ -1,0 +1,36 @@
+name: Night city
+
+# Redraws assets/night-city.svg from the latest contribution calendar.
+on:
+  schedule:
+    - cron: "17 0 * * *" # every day, 00:17 UTC
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [scripts/night-city.mjs, .github/workflows/night-city.yml]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: night-city
+  cancel-in-progress: true
+
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Draw the city
+        run: node scripts/night-city.mjs "${{ github.repository_owner }}" assets/night-city.svg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit if it changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/night-city.svg
+          git diff --cached --quiet || (git commit -m "Redraw night city" && git push)

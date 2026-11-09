@@ -12,6 +12,9 @@ I build AI-powered SaaS products and multiplayer 3D browser games, from the data
 <a href="https://www.instagram.com/opu.uwu/"><img src="https://img.shields.io/badge/Instagram-opu.uwu-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"></a>
 <a href="https://www.facebook.com/profile.php?id=100013636727523"><img src="https://img.shields.io/badge/Facebook-Ismail%20Opu-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook"></a>
 
+<br><br>
+<img src="assets/night-city.svg" width="100%" alt="Pixel-art night city drawn from my GitHub contributions: one tower per week, lit windows for the days I shipped code, with a ghost drifting over the skyline">
+
 </div>
 
 ---
