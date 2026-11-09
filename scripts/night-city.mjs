@@ -145,42 +145,44 @@ const ghost = sprite(GHOST, { w: '#f5f3ff', k: '#1e1b4b', p: '#f472b6' }, 3, 0, 
 const bat = sprite(BAT, { k: '#0b0816' }, 3, 0, 0);
 
 const svg = `
-<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges" role="img" aria-label="${LOGIN}'s contribution night city: ${fmt(allTime)} total contributions">
+<svg xmlns="http://www.w3.org/2000/svg" class="nc" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges" role="img" aria-label="${LOGIN}'s contribution night city: ${fmt(allTime)} total contributions">
 <title>${LOGIN}'s contribution city</title>
 <style>
-  .tw{animation:tw 3s ease-in-out infinite}
-  .fl{animation:fl 6s steps(1) infinite}
-  .blink{animation:tw 1.2s steps(1) infinite}
-  .ghost{animation:fly 26s linear infinite}
-  .bob{animation:bob 2.4s ease-in-out infinite}
-  .bat{animation:bat 19s linear infinite 4s;transform:translate(-60px,0)}
-  .flap{animation:flap .35s steps(1) infinite}
-  .t{font-family:'Courier New',ui-monospace,monospace;font-weight:700}
-  @keyframes tw{0%,100%{opacity:1}50%{opacity:.25}}
-  @keyframes fl{0%,88%,100%{opacity:1}90%,94%{opacity:.15}}
-  @keyframes fly{0%{transform:translate(-60px,92px)}50%{transform:translate(${W / 2}px,48px)}100%{transform:translate(${W + 60}px,96px)}}
-  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-  @keyframes bat{0%{transform:translate(${W + 30}px,70px)}100%{transform:translate(-40px,130px)}}
-  @keyframes flap{0%{transform:scaleY(1)}50%{transform:scaleY(-.6)}}
-  @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+  /* everything is scoped under .nc / nc- so the SVG can also be inlined into a web page */
+  .nc .tw{animation:nc-tw 3s ease-in-out infinite}
+  .nc .fl{animation:nc-fl 6s steps(1) infinite}
+  .nc .blink{animation:nc-tw 1.2s steps(1) infinite}
+  .nc .ghost{animation:nc-fly 26s linear infinite}
+  .nc .bob{animation:nc-bob 2.4s ease-in-out infinite}
+  .nc .bat{animation:nc-bat 19s linear infinite 4s;transform:translate(-60px,0)}
+  .nc .flap{animation:nc-flap .35s steps(1) infinite}
+  .nc .t{font-family:'JetBrains Mono','Courier New',ui-monospace,monospace;font-weight:700}
+  .nc.paused *{animation-play-state:paused!important}
+  @keyframes nc-tw{0%,100%{opacity:1}50%{opacity:.25}}
+  @keyframes nc-fl{0%,88%,100%{opacity:1}90%,94%{opacity:.15}}
+  @keyframes nc-fly{0%{transform:translate(-60px,92px)}50%{transform:translate(${W / 2}px,48px)}100%{transform:translate(${W + 60}px,96px)}}
+  @keyframes nc-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  @keyframes nc-bat{0%{transform:translate(${W + 30}px,70px)}100%{transform:translate(-40px,130px)}}
+  @keyframes nc-flap{0%{transform:scaleY(1)}50%{transform:scaleY(-.6)}}
+  @media (prefers-reduced-motion:reduce){.nc *{animation:none!important}}
 </style>
 <defs>
-  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+  <linearGradient id="nc-sky" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#07060d"/><stop offset=".7" stop-color="#160f2e"/><stop offset="1" stop-color="#2a1650"/>
   </linearGradient>
-  <radialGradient id="glow"><stop offset="0" stop-color="#a78bfa" stop-opacity=".35"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
-  <clipPath id="frame"><rect width="${W}" height="${H}" rx="14"/></clipPath>
+  <radialGradient id="nc-glow"><stop offset="0" stop-color="#a78bfa" stop-opacity=".35"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
+  <clipPath id="nc-frame"><rect width="${W}" height="${H}" rx="14"/></clipPath>
 </defs>
-<g clip-path="url(#frame)">
-<rect width="${W}" height="${H}" fill="url(#sky)"/>
-<circle cx="${MX}" cy="${MY}" r="60" fill="url(#glow)" shape-rendering="auto"/>
+<g clip-path="url(#nc-frame)">
+<rect width="${W}" height="${H}" fill="url(#nc-sky)"/>
+<circle cx="${MX}" cy="${MY}" r="60" fill="url(#nc-glow)" shape-rendering="auto"/>
 ${stars}${moon}
 <g opacity=".9">${backCity}</g>
 ${city}
 ${ground}
 <g class="bat"><g class="flap" style="transform-origin:10px 6px">${bat}</g></g>
 <g class="ghost"><g class="bob">
-  <ellipse cx="19" cy="18" rx="30" ry="26" fill="url(#glow)" shape-rendering="auto"/>${ghost}
+  <ellipse cx="19" cy="18" rx="30" ry="26" fill="url(#nc-glow)" shape-rendering="auto"/>${ghost}
 </g></g>
 <text class="t" x="22" y="34" font-size="18" fill="#f5f3ff">${LOGIN}<tspan fill="#a78bfa">.city</tspan></text>
 <text class="t" x="22" y="54" font-size="11" fill="#a1a1c2">one tower per week · lit windows = days I shipped · the city grows as I code</text>
@@ -195,4 +197,11 @@ ${ground}
 
 mkdirSync(dirname(OUT), { recursive: true });
 writeFileSync(OUT, svg.trim() + '\n');
+// machine-readable copy, used by the portfolio for hover tooltips
+writeFileSync(OUT.replace(/\.svg$/, '.json'), JSON.stringify({
+  login: LOGIN, updated: new Date().toISOString().slice(0, 10), allTime, lastYear: cal.totalContributions,
+  streak: current, longest, busiestDay: maxDay,
+  layout: { width: W, height: H, x0: X0, col: COL, bw: BW, ground: GROUND },
+  weeks: cal.weeks.map(w => ({ start: w.contributionDays[0].date, total: w.contributionDays.reduce((a, d) => a + d.contributionCount, 0) })),
+}) + '\n');
 console.log(`wrote ${OUT}: ${weeks.length} weeks, ${fmt(allTime)} all-time, ${cal.totalContributions} last year, streak ${current}/${longest}`);
